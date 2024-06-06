@@ -6,10 +6,10 @@ Here is how the cipher works:
 
 
 Example:
-Text: This is a test, all punctu4ti0n will stay in this mess@ge because its funny :)
-X value: 56
-Y value: 404
-Amount of useless characters: 10
+- Text: This is a test, all punctu4ti0n will stay in this mess@ge because its funny :)
+- X value: 56
+- Y value: 404
+- Amount of useless characters: 10
 
 Result:
 - Encrypted text: PNEYOOGPAYP,GHRLYJIZQ4ZO2TWORHOPEUETZNEYIKOO@MKHAIEYOKOPYLQJTU:)
