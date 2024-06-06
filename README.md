@@ -20,5 +20,5 @@ Result:
 - Deciphering result: THISISATEST,ALLPUNCTU4TI0NWILLSTAYINTHISMESS@GEBECAUSEITSFUNNY:)
 
 
-I am not very knowledgeable in ciphers but i think this is a pretty robust one
-I worked on this for about a day (~8hrs) in total counting the thinking part
+I am not very knowledgeable in ciphers but i think this is a pretty robust one.  
+I worked on this for about a day (~8hrs) in total counting the thinking part.  
