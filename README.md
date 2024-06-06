@@ -1,5 +1,3 @@
-I am not very knowledgeable in ciphers but i think this is a pretty robust one
-
 Here is how the cipher works:
 - You can input any text (probably not weird ASCII characters, i did not check)
 - It will ask you for X and Y, these numbers are used to translate the letters and numbers to different spots in the alphabet, t does not loop the alphabet / 0-9 numbers if you have an X or Y value that is too high, instead, it bounces back when it reaches the end/start (like a ball against a wall)
@@ -22,4 +20,5 @@ Result:
 - Deciphering result: THISISATEST,ALLPUNCTU4TI0NWILLSTAYINTHISMESS@GEBECAUSEITSFUNNY:)
 
 
+I am not very knowledgeable in ciphers but i think this is a pretty robust one
 I worked on this for about a day (~8hrs) in total counting the thinking part
