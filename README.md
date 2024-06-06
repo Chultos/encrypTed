@@ -1,6 +1,6 @@
 Here is how the cipher works:
 - You can input any text (probably not weird ASCII characters, i did not check)
-- It will ask you for X and Y, these numbers are used to translate the letters and numbers to different spots in the alphabet, t does not loop the alphabet / 0-9 numbers if you have an X or Y value that is too high, instead, it bounces back when it reaches the end/start (like a ball against a wall)
+- It will ask you for X and Y, these numbers are used to translate the letters and numbers to different spots in the alphabet, it does not loop the alphabet / 0-9 numbers if you have an X or Y value that is too high, instead, it bounces back when it reaches the end/start (like a ball between two walls)
 - You can add a number of useless binary characters in the key to make the cipher even stronger
 - At the end, you will get the encrypted text and the binary paragraph used to decipher the text
 
