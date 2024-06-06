@@ -14,12 +14,12 @@ Y value: 404
 Amount of useless characters: 10
 
 Result:
-Encrypted text: PNEYOOGPAYP,GHRLYJIZQ4ZO2TWORHOPEUETZNEYIKOO@MKHAIEYOKOPYLQJTU:)
-Binary Paragraph (spaces are for the explanation): 
-Reversed binary key (useless characters are at the beginning when reversed)  X value      Y value      Reverse Indicator for each character (depends on text size)
-01000110001111001101101010111100101011101000011111110011010101001001011010   0000111000   0110010100   0000000000000000100001000010000011000000000000000011000000000100
+- Encrypted text: PNEYOOGPAYP,GHRLYJIZQ4ZO2TWORHOPEUETZNEYIKOO@MKHAIEYOKOPYLQJTU:)
 
-Deciphering result: THISISATEST,ALLPUNCTU4TI0NWILLSTAYINTHISMESS@GEBECAUSEITSFUNNY:)
+- Binary Paragraph (spaces are for the explanation):
+![image](https://github.com/Chultos/encrypTed/assets/65951441/ea62f056-8e8d-4fdc-9ef6-e4da7524b397)
+
+- Deciphering result: THISISATEST,ALLPUNCTU4TI0NWILLSTAYINTHISMESS@GEBECAUSEITSFUNNY:)
 
 
 I worked on this for about a day (~8hrs) in total counting the thinking part
