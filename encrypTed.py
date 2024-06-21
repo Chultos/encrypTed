@@ -108,17 +108,19 @@ if mode == "CIPHER" or mode == "C": # CIPHER MODE
     # Gather inputs
     text = input("Provide the text you wish to cipher: ")
 
-    x = int(input("Provide the value of X (1-1023): "))
-    while x < 1 and x > 1023: 
-        print("X must be a number between 1 and 1023")
-        x = int(input("Provide the value of X (1-1023): "))
+    x = secrets.randbits(10)
+    while x == 0: 
+        x = secrets.randbits(10)
 
-    y = int(input("Provide the value of Y (1-1023): "))
-    while y < 1 and y > 1023: 
-        print("Y must be a number between 1 and 1023")
-        y = int(input("Provide the value of Y (1-1023): "))
+    y = secrets.randbits(10)
+    while y == 0: 
+        y = secrets.randbits(10)
 
-    uselessAmount = int(input("Provide the number of useless characters in the key: "))
+    uselessAmount = input("Provide the number of useless characters in the key: ")
+    while not uselessAmount.isdigit():
+        input("Provide the NUMBER of useless characters in the key: ")
+
+    uselessAmount = int(uselessAmount)
 
     #GENERATING THE BINARY PARAGRAPH
     filteredText = unidecode(text.replace(" ", "").upper())
