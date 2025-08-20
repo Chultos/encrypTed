@@ -21,5 +21,3 @@ Result:
 
 I am not knowledgeable in ciphers at all (basically watched 1 or 2 Youtube videos) but i think this is a pretty robust one.
 It shouldn't be possible to guess the language by looking at the most common letters because they are randomized and the number of possible solutions is extremely huge.
-
-I worked on this for about a day (~8hrs) in total counting the thinking part and looking up Python syntax.  
