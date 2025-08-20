@@ -2,6 +2,7 @@ import secrets
 import string
 import re
 from unidecode import unidecode
+import base64
 
 # Function to offset a letter in the alphabet (bounces back at A and Z instead of just looping around)
 def offsetAlphaCharacter(charAlphaIndex, offsetRemaining, offsetDirection = "forwards", cipherMode = False):
@@ -97,6 +98,15 @@ def offsetDigitCharacter(digit, offsetRemaining, offsetDirection = "forwards", c
     else:
         return digit
 
+def isBase64(s: str) -> bool:
+    try:
+        # Try decoding
+        decoded = base64.b64decode(s, validate=True)
+        # Optional: check if it re-encodes to the same string (ignoring padding)
+        return base64.b64encode(decoded).decode().rstrip("=") == s.rstrip("=")
+    except Exception:
+        return False
+
 mode = input("Do you want to 'cipher' or 'decipher': ")
 regex = re.compile('[^a-zA-Z]')
 mode = regex.sub('', mode).upper() # Format the input to uppercase letters only
@@ -174,31 +184,49 @@ if mode == "CIPHER" or mode == "C": # CIPHER MODE
     xBinary = f'{x:010b}'
     yBinary = f'{y:010b}'
 
-    finalBinaryParagraph = reversedBinaryKey + xBinary + yBinary + isReverseBinaryList
-
+    encryptedKey = reversedBinaryKey + xBinary + yBinary + isReverseBinaryList + "1" # Add 1 to be able to remove padded 0's when decoding from base64, needs to ALWAYS be there
 
     # Print the encrypted text + binary paragraph
     print("Encrypted text: " + encryptedText)
-    print("Key: " + finalBinaryParagraph)
+
+    # Pad encryptedKey to full bytes
+    padLength = (8 - len(encryptedKey) % 8) % 8
+    encryptedKeyPadded = encryptedKey + "0" * padLength
+    # Convert binary string to bytes
+    encryptedKeyBytes = int(encryptedKeyPadded, 2).to_bytes(len(encryptedKeyPadded) // 8, byteorder="big")
+    # Encode to base64
+    encryptedKeyB64 = base64.b64encode(encryptedKeyBytes).decode()
+    print("Encrypted Key: ", encryptedKeyB64)
 
 elif mode == "DECIPHER" or mode == "D": # DECIPHER MODE
     
-    encryptedText = input("Provide the text you wish to decipher: ")
+    encryptedText = input("Provide the encrypted text you wish to decipher: ")
     encryptedText = unidecode(encryptedText.replace(" ", "").upper()) # Makes sure the code won't break if the user inputs weird stuff | probably not fully secure, did not test crazy characters
 
-    binaryParagraph = input("Provide the binary paragraph: ")
-    while not binaryParagraph.isdigit():
-        print("The binary paragraph is the one composed of 1s and 0s.")
-        binaryParagraph = input("Provide the binary paragraph: ")
+    encryptedKeyInput = input("Provide the encrypted key: ")
 
+    # Checking if input is valid base64
+    while not isBase64(encryptedKeyInput):
+        print("The encrypted key you provided is not valid Base64.")
+        encryptedKeyInput = input("Provide the encrypted key: ")
+
+    # Decode base64 back to binary string
+    decodedKeyBytes = base64.b64decode(encryptedKeyInput)
+    decodedKeyPadded = "".join(f"{byte:08b}" for byte in decodedKeyBytes)
+
+    # Remove padding bits to get back original key
+    decodedKeyPadded = decodedKeyPadded.rstrip('0')
+
+    # Remove the manually added 1 from the end of the key
+    decodedKey = decodedKeyPadded[:-1]
 
     # Read x, y and the reverse indicator part
-    isReverseBinaryList = binaryParagraph[-len(encryptedText):]
-    x = int(binaryParagraph[-len(encryptedText)-20:-len(encryptedText)-10], 2)
-    y = int(binaryParagraph[-len(encryptedText)-10:-len(encryptedText)], 2)
+    isReverseBinaryList = decodedKey[-len(encryptedText):]
+    x = int(decodedKey[-len(encryptedText)-20:-len(encryptedText)-10], 2)
+    y = int(decodedKey[-len(encryptedText)-10:-len(encryptedText)], 2)
 
     # Remove that stuff and reverse the key part of the paragraph
-    binaryKey = binaryParagraph[:-len(encryptedText)-20][::-1]
+    binaryKey = decodedKey[:-len(encryptedText)-20][::-1]
 
     # Decipher the text
     decryptedText = ""
